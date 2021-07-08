@@ -145,7 +145,7 @@ defmodule ExqScheduler.Schedule do
   end
 
   def local_to_utc(naive_time, timezone) do
-    case Timezone.resolve(timezone, Timex.to_erl(naive_time), :wall) do
+    case Timex.to_datetime(naive_time, timezone) do
       %DateTime{} = time ->
         Timezone.convert(time, "Etc/UTC")
 
